@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: stg
+    schema: stg_uki_ecommerce
+    tables:
+      - name: orders
+      - name: customers
+      - name: payments
+      - name: shippingevents
+      - name: shippingitems
+      - name: metadata
+      - name: orderitems
+      - name: products 
+      - name: product_attributes
+      - name: inventory
+      - name: suppliers
+
