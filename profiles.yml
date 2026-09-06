@@ -3,11 +3,11 @@ default:
   outputs:
     dev:
       type: databricks
-      catalog: "{{ env_var('target_catalog', 'dev') }}"
+      catalog: "{{ var('target_catalog', 'dev') }}"
       schema: cur_uki_ecommerce
-      host: "{{ env_var('host') }}"
-      http_path: "{{ env_var('http_path') }}"
-      token: "{{ env_var('token') }}"
+      host: "{{ var('host') }}"
+      http_path: "{{ var('http_path') }}"
+      token: "{{ var('token') }}"
       auth_type: databricks_cli
       threads: 16
 
