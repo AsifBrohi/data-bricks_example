@@ -3,7 +3,7 @@ default:
   outputs:
     dev:
       type: databricks
-      catalog: "{{ env_var('unity_catalog', 'dev') }}"
+      catalog: "{{ env_var('target_catalog', 'dev') }}"
       schema: cur_uki_ecommerce
       host: "{{ env_var('host') }}"
       http_path: "{{ env_var('http_path') }}"
