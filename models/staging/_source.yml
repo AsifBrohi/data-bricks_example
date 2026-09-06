@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: stg
+    database: "{{ var('target_catalog', 'dev') }}"
     schema: stg_uki_ecommerce
     tables:
       - name: orders
