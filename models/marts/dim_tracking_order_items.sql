@@ -4,6 +4,7 @@ WITH source AS (
 ,countries AS (
     SELECT * FROM {{ ref("dim_tracking_order_countries")}}
 ) 
+
 ,carriers AS (
     SELECT * FROM {{ ref("dim_tracking_order_item_carriers")}}
 )
@@ -18,10 +19,21 @@ SELECT
     ,s.zip_code
     ,s.estimated_delivery_date
     ,s.cost
-    ,c.country_sk
+    ,c.tracking_order_country_sk
     ,ca.carrier_sk
     ,st.status_sk
 FROM source s
-LEFT JOIN countries c ON c.country = s.country
+LEFT JOIN countries c ON c.tracking_order_country = s.country
 LEFT JOIN carriers ca ON ca.carrier = s.carrier
 LEFT JOIN status_build st ON st.status = s.status
+GROUP BY
+    s.tracking_id
+    ,s.street
+    ,s.city
+    ,s.state_or_region
+    ,s.zip_code
+    ,s.estimated_delivery_date
+    ,s.cost
+    ,c.tracking_order_country_sk
+    ,ca.carrier_sk
+    ,st.status_sk
