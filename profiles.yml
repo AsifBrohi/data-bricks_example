@@ -1,0 +1,13 @@
+default:
+  target: target_details
+  outputs:
+    target_details:
+      type: databricks
+      catalog: "{{ env_var('DEV_ENV')}}"
+      schema: cur_uki_ecommerce
+      host: "{{ env_var('HOST')}}"
+      http_path: "{{ env_var('HTTP_PATH')}}"
+      token: "{{ env_var('TOKEN')}}"
+      threads: 16
+
+
