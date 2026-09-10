@@ -2,7 +2,7 @@ WITH source AS (
     SELECT * FROM {{ source("stg","shippingitems")}}
 )
 ,countries AS (
-    SELECT * FROM {{ ref("dim_shipping_countries")}}
+    SELECT * FROM {{ ref("dim_tracking_order_countries")}}
 ) 
 ,carriers AS (
     SELECT * FROM {{ ref("dim_tracking_order_item_carriers")}}
