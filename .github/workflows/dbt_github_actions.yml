@@ -3,7 +3,7 @@ name: Run dbt Models
 on:
   push:
     branches:
-      - main  # Runs every time you push to the main branch
+      - master  # Runs every time you push to the main branch
 
 jobs:
   run_dbt:
