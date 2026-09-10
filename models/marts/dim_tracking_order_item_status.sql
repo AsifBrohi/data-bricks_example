@@ -1,9 +1,15 @@
 WITH source AS (
-    select * from {{source("stg","shippingitems")}}
+    select * from {{ source("stg","shippingitems")}}
 )
 
-select 
-DISTINCT 
-md5(status) as status_sk,
-status 
-from source
+,build_status AS (
+    SELECT 
+        status
+    FROM source
+    GROUP BY status
+    
+)
+SELECT
+    md5(status) as status_sk
+    ,status
+FROM build_status
