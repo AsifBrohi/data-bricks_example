@@ -1,0 +1,34 @@
+name: Run dbt Models
+
+on:
+  push:
+    branches:
+      - master  # Runs every time you push to the main branch
+
+jobs:
+  run_dbt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dbt-databricks
+        run: pip install dbt-databricks
+
+      - name: Run dbt
+        # This injects your hidden GitHub Secret into the environment variable dbt needs!
+        env:
+          DBT_TOKEN: ${{ secrets.DBT_TOKEN }}
+          HOST: ${{ secrets.HOST}}
+          DEV_ENV: ${{ secrets.DEV_ENV}}
+          PRD_ENV: ${{ secrets.PRD_ENV}}
+          HTTP_PATH: ${{ secrets.HTTP_PATH}}
+        run: |
+          dbt deps
+          dbt run --profiles-dir .

@@ -1,15 +1,15 @@
 --models/marts/dim_tracking_order_item_carriers
 
-with source AS (
+WITH source AS (
     select * from {{ source('stg','shippingitems')}}
 )
 
-, carrier AS (
-    select carrier
-    from source 
-    group by carrier
+, build_carrier AS (
+    SELECT carrier
+    FROM source 
+    GROUP BY carrier
 )
-select 
-md5(carrier) as carrier_sk,
-carrier
-from carrier
+SELECT
+    md5(carrier) as carrier_sk
+    ,carrier
+FROM build_carrier
