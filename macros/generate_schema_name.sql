@@ -2,6 +2,10 @@
     {%- if custom_schema_name is none -%}
         {{ target.schema }}
     {%- else -%}
-        {{ custom_schema_name | trim }}
+        {%- if target.name == 'prd' -%}
+            {{ custom_schema_name | trim }}
+        {%- else -%}
+            {{ target.schema ~ '_' ~ custom_schema_name | trim }}
+        {%- endif -%}
     {%- endif -%}
 {%- endmacro %}
