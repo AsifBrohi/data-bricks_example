@@ -25,11 +25,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 on-run-start:
-  - "USE CATALOG {{ var('target_catalog') }}"
+  - "USE CATALOG {{ var('target_catalog','dev') }}"
 
 models:
   dbt_ecommerce:
-    +database: "{{ var('target_catalog') }}" 
+    +database: "{{ var('target_catalog','dev') }}" 
     # Applies to all files under models/example/
     marts:
       +materialized: table
